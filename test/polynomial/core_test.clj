@@ -52,7 +52,7 @@
                   stest/enumerate-namespace
                   stest/check))))
 
-;;; Units tests
+;;; Unit tests
 
 ;; These show the canonical form of polynomials and the usage of the
 ;; functions on polynomials.

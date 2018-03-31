@@ -23,7 +23,7 @@
         (every?
           (some-fn
             #(and (zero? (val %)) (nil? (ret (key %))))
-            #(= ((key %) ret) (val %)))
+            #(= (ret (key %)) (val %)))
           args)))
 
 (s/fdef p/poly+

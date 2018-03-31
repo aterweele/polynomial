@@ -30,6 +30,10 @@
   :args (s/* ::p/polynomial)
   :ret ::p/polynomial)
 
+(s/fdef p/term*
+  :args (s/* ::p/term)
+  :ret ::p/polynomial)
+
 (s/fdef p/poly*
   :args (s/* ::p/polynomial)
   :ret ::p/polynomial)

@@ -57,7 +57,7 @@
 ;; These show the canonical form of polynomials and the usage of the
 ;; functions on polynomials.
 
-(deftest unit-tests
+(deftest examples
   ;; Adapted from
   ;; https://github.com/norvig/paip-lisp/raw/master/PAIP-part2.pdf,
   ;; page 13 of the PDF or page 521 according to page numbers.
@@ -78,6 +78,20 @@
            {:x 2}  45
            {:x 1}  10
            {}      1}))))
+
+;; Problems I discovered in development, captured as tests.
+(deftest regressions
+  (testing
+      "an exps must be a map. This is to prevent ambiguous polynomials
+      like {{} 1 nil 2}."
+    (let [one (term*)]
+      (is (s/valid? ::p/polynomial one)
+        (format "term* did not return a polynomial: %s"
+          (s/explain-str ::p/polynomial one))))
+    (let [one (poly*)]
+      (is (s/valid? ::p/polynomial one)
+        (format "poly* did not return a polynomial: %s"
+          (s/explain-str ::p/polynomial one))))))
 
 ;;; Algebraic properties of polynomials
 

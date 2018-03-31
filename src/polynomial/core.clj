@@ -18,11 +18,13 @@
 ;; operations like 1 - 1 yield zero (represented as something like 0 *
 ;; x^0), but we do not represent zero as a coefficient. This will be
 ;; the argument to `normalize`.
-(s/def ::non-canonical-polynomial (s/map-of ::exps number?))
+(s/def ::non-canonical-polynomial (s/nilable (s/map-of ::exps number?)))
 
 ;; A polynomial is a map of terms.
 (s/def ::polynomial
-  (s/and ::non-canonical-polynomial (s/map-of ::exps (complement zero?))))
+  (s/and
+    ::non-canonical-polynomial
+    (s/nilable (s/map-of ::exps (complement zero?)))))
 
 (defn normalize
   "Remove terms with a coefficient of 0 from `p`."

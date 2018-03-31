@@ -35,7 +35,7 @@
   "Add the given polynomials."
   [& polys]
   (->> polys
-       (apply merge-with +)
+       (apply merge-with +')
        normalize))
 
 (defn term*
@@ -43,10 +43,10 @@
   [& terms]
   {(->> terms
         (map first)
-        (apply merge-with + {}))
+        (apply merge-with +' {}))
    (->> terms
         (map second)
-        (reduce *))})
+        (reduce *'))})
 
 (defn poly*
   "Multiply the given polynomials."

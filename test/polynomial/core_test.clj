@@ -130,6 +130,6 @@
   32
   (commutative poly* ::p/polynomial))
 
-(defspec poly*-commutative
+(defspec poly*-commutative-general
   16
   (commutative-general poly* ::p/polynomial))

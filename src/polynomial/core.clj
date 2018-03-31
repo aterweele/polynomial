@@ -5,7 +5,7 @@
             [clojure.spec.alpha :as s]))
 
 ;; the form of variables to powers, e.g. (x^a)(y^b)(z^c)
-(s/def ::exps (s/map-of any? (s/and number? pos?)))
+(s/def ::exps (s/map-of any? (s/and integer? pos?)))
 
 ;; A term is an exps, representing the variables of a term and their
 ;; powers, and a non-zero coefficient.

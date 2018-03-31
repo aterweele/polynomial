@@ -1,10 +1,13 @@
 # polynomial
 
-A Clojure library designed to ... well, that part is up to you.
+A Clojure representation of polynomials.
 
-## Usage
+You can read through `src` and `test` directly or read it as HTML by
+using [Marginalia](https://github.com/gdeer81/marginalia):
 
-FIXME
+```shellsession
+$ lein marg
+```
 
 ## License
 

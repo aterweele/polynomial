@@ -16,8 +16,8 @@
 ;; By writing function specs, we can generatively test the opertaions
 ;; on polynomials.
 
-(s/fdef normalize
-  :args ::p/non-canonical-polynomial
+(s/fdef p/normalize
+  :args (s/& ::p/non-canonical-polynomial)
   :ret ::p/polynomial
   :fn (fn [{:keys [args ret]}]
         (every?
@@ -26,11 +26,11 @@
             #(= ((key %) ret) (val %)))
           args)))
 
-(s/fdef poly+
+(s/fdef p/poly+
   :args (s/* ::p/polynomial)
   :ret ::p/polynomial)
 
-(s/fdef poly*
+(s/fdef p/poly*
   :args (s/* ::p/polynomial)
   :ret ::p/polynomial)
 

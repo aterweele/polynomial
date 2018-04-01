@@ -44,14 +44,6 @@
     stest/enumerate-namespace
     stest/instrument)
 
-;; For every polynomial function, use its function specification to
-;; generate its input, call the function, and check the output with
-;; the spec.
-(deftest generative
-  (is (empty? (-> 'polynomial.core
-                  stest/enumerate-namespace
-                  stest/check))))
-
 ;;; Unit tests
 
 ;; These show the canonical form of polynomials and the usage of the

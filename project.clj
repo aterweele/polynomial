@@ -7,4 +7,6 @@
                  [org.clojure/test.check "0.9.0"]
                  [org.clojure/math.combinatorics "0.1.4"]]
   :profiles {:dev {:jvm-opts ["-Dclojure.spec.check-asserts=true"]}}
-  :plugins [[lein-marginalia "0.9.1"]])
+  :plugins [[lein-marginalia "0.9.1"]]
+  :test-selectors {:default {complement :expensive}
+                   :expensive :expensive})

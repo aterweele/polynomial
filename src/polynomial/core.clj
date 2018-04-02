@@ -104,3 +104,19 @@
        (reduce poly+)
        normalize))
 
+(defn degree
+  [polynomial v]
+  (->> polynomial
+       (map (comp v first))
+       (apply max 0)))
+
+(defn derive-term
+  "Find the derivative of `term` with respect to variable `v`"
+  [v [exps coefficient :as term]]
+  (when-let [exp (exps v)]
+    [(assoc exps v (dec exp)) (*' coefficient exp)]))
+
+(defn derivative
+  "Find the derivative of `polynomial` with respect to variable `v`."
+  [polynomial v]
+  (into {} (map (partial derive-term v)) polynomial))

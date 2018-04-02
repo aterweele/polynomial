@@ -8,5 +8,6 @@
                  [org.clojure/math.combinatorics "0.1.4"]]
   :profiles {:dev {:jvm-opts ["-Dclojure.spec.check-asserts=true"]}}
   :plugins [[lein-marginalia "0.9.1"]]
+  :marginalia {:javascript ["https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML"]}
   :test-selectors {:default {complement :expensive}
                    :expensive :expensive})

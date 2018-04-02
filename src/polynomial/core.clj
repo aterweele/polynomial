@@ -4,7 +4,7 @@
   (:require [clojure.math.combinatorics :as combo]
             [clojure.spec.alpha :as s]))
 
-;; the form of variables to powers, e.g. xᵃyᵇzᶜ
+;; the form of variables to powers, e.g. \\(x^iy^jz^k\\)
 (s/def ::exps (s/map-of #_any? keyword? (s/and integer? pos?)))
 
 ;; A term is an `::exps`, representing the variables of a term and
@@ -17,11 +17,11 @@
     #_map-entry?
     (s/tuple ::exps (s/and rational? (complement zero?)))))
 
-;; operations like 1 - 1 or x - x yield zero (represented as something
-;; like 0 * x⁰), but we do not represent zero as a
-;; coefficient. `::non-canonical-polynomial` will be the argument to
-;; `normalize`, which will yield the canonical representation of the
-;; polynomial.
+;; operations like \\(1 - 1\\) or \\(x - x\\) yield zero, which is
+;; represented as something like \\(0x^0\\). However, we do not
+;; represent zero as a coefficient. `::non-canonical-polynomial` will
+;; be the argument to `normalize`, which will yield the canonical
+;; representation of the polynomial.
 (s/def ::non-canonical-polynomial (s/nilable (s/map-of ::exps rational?)))
 
 ;; A polynomial is a map of terms.

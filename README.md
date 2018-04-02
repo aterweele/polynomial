@@ -6,7 +6,7 @@ You can read through `src` and `test` directly or read it as HTML by
 using [Marginalia](https://github.com/gdeer81/marginalia):
 
 ```shellsession
-$ lein marg
+$ lein marg src test
 ```
 
 ## License

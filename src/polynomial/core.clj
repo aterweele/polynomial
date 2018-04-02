@@ -1,24 +1,28 @@
 (ns polynomial.core
-  "Operations on a representation of polynomials. Base on Paradigms of
+  "Operations on a representation of polynomials. Based on Paradigms of
   Artificial Intelligence Programming chapter 15."
   (:require [clojure.math.combinatorics :as combo]
             [clojure.spec.alpha :as s]))
 
-;; the form of variables to powers, e.g. (x^a)(y^b)(z^c)
-(s/def ::exps (s/map-of any? (s/and integer? pos?)))
+;; the form of variables to powers, e.g. xᵃyᵇzᶜ
+(s/def ::exps (s/map-of #_any? keyword? (s/and integer? pos?)))
 
-;; A term is an exps, representing the variables of a term and their
-;; powers, and a non-zero coefficient.
+;; A term is an `::exps`, representing the variables of a term and
+;; their powers, and a coefficient. In any polynomial, there are an
+;; infinite number of terms which have a coefficient of zero. Thus,
+;; the coefficient must be non-zero.
 (s/def ::term
   (s/and
     ;; Commented out, as map entries do not have a generator.
     #_map-entry?
-    (s/tuple ::exps (s/and number? (complement zero?)))))
+    (s/tuple ::exps (s/and rational? (complement zero?)))))
 
-;; operations like 1 - 1 yield zero (represented as something like 0 *
-;; x^0), but we do not represent zero as a coefficient. This will be
-;; the argument to `normalize`.
-(s/def ::non-canonical-polynomial (s/nilable (s/map-of ::exps number?)))
+;; operations like 1 - 1 or x - x yield zero (represented as something
+;; like 0 * x⁰), but we do not represent zero as a
+;; coefficient. `::non-canonical-polynomial` will be the argument to
+;; `normalize`, which will yield the canonical representation of the
+;; polynomial.
+(s/def ::non-canonical-polynomial (s/nilable (s/map-of ::exps rational?)))
 
 ;; A polynomial is a map of terms.
 (s/def ::polynomial

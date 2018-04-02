@@ -22,7 +22,11 @@
   :fn (fn [{:keys [args ret]}]
         (every?
           (some-fn
+            ;; A term with a coefficient of zero is not present in the
+            ;; normalized polynomial.
             #(and (zero? (val %)) (nil? (ret (key %))))
+            ;; An term with a non-zero coefficient is present in the
+            ;; normalized polynommial.
             #(= (ret (key %)) (val %)))
           args)))
 

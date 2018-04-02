@@ -101,9 +101,9 @@
   property describing `f`'s commutivity, i.e. f(x,y) = f(y,x). `f` is
   the commutative function. `arg-spec` is a spec for x and y."
   [f arg-spec]
-  (prop/for-all [p1 (s/gen arg-spec)
-                 p2 (s/gen arg-spec)]
-    (= (f p1 p2)) (f p2 p1)))
+  (prop/for-all [x (s/gen arg-spec)
+                 y (s/gen arg-spec)]
+    (= (f x y)) (f y x)))
 
 (defn commutative-general
   "Given a function `f` of  and a spec for its args, yield a property for

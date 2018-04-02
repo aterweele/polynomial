@@ -38,4 +38,4 @@ jobs:
       # generate documentation
       - run: lein marg src test
       - store_artifacts:
-          path: /docs/uberdoc.html
+          path: ~/repo/docs

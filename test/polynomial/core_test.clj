@@ -46,31 +46,6 @@
 
 ;;; Unit tests
 
-;; These show the canonical form of polynomials and the usage of the
-;; functions on polynomials.
-
-(deftest examples
-  ;; Adapted from
-  ;; https://github.com/norvig/paip-lisp/raw/master/PAIP-part2.pdf,
-  ;; page 13 of the PDF or page 521 according to page numbers.
-  (testing "(x + 1)^10"
-    (is (=
-          (->> {{} 1 {:x 1} 1}
-               repeat
-               (take 10)
-               (apply poly*))
-          {{:x 10} 1
-           {:x 9}  10
-           {:x 8}  45
-           {:x 7}  120
-           {:x 6}  210
-           {:x 5}  252
-           {:x 4}  210
-           {:x 3}  120
-           {:x 2}  45
-           {:x 1}  10
-           {}      1}))))
-
 ;; Problems I discovered in development, captured as tests.
 (deftest regressions
   (testing

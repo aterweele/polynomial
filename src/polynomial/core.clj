@@ -60,6 +60,11 @@
   [p]
   (into {} (remove (comp zero? second)) p))
 
+;; If two terms have the same variables to the same powers, then in
+;; our representation of the polynomial, they will have the same key
+;; in the polynomial map. This is why we `merge-with` -- it takes
+;; advantage of the key collision and adds the coefficients together,
+;; producing the new term. `+'` is used for arbitrary precision.
 (defn poly+
   "Add the given polynomials."
   [& polys]
@@ -67,6 +72,10 @@
        (apply merge-with +')
        normalize))
 
+;; Multiplying terms yields a polynomial of one term. We find the
+;; variables and their exponents by merging and adding, because
+;; \\(x^ix^j = x^{i+j}\\). We find the coefficient by multiplying all
+;; the given coefficients together.
 (defn term*
   "Multiply the given terms."
   [& terms]
@@ -77,6 +86,15 @@
         (map second)
         (reduce *'))})
 
+;; A common way to find the product of two polynomials on paper is to
+;; draw a table with the terms of one on the horizontal and the terms
+;; of the other on the vertical, then filling in each cell with the
+;; product of the two terms. We generalize this to an arbitrary number
+;; of polynomials by finding the Cartesian product of `polys`. Given
+;; \\(n\\) polynomials, we can think of this as drawing an
+;; \\(n\\)-dimensional matrix. Then, we do cellwise multiplication
+;; with `term*`. We add the resulting polynomials together with
+;; `poly+`.
 (defn poly*
   "Multiply the given polynomials."
   [& polys]
